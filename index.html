@@ -5,9 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="./styles/styles.css">
-    <script src="./main.js"></script>
+    <script src="./main.js" defer></script>
 </head>
 <body>
+    <header>
+        <h1>ROCK PAPER SCISSORS</h1>
+    </header>
+    <section class="wrapper">
+        <div class="result">
+            <h1 class="game-text" id="result">Choose your weapon</h1>
+        </div>
+        <div class="game">
+            <div class="player">
+                <h1 class="game-text" id="player-choice">?</h1>
+                <h2>PLAYER</h2>
+                <p class="player-score">0</p>
+            </div>
+            <div class="computer">
+                <h1 class="game-text" id="computer-choice">?</h1>
+                <h2>COMPUTER</h2>
+                <p class="computer-score">0</p>
+            </div>
+        </div>
+        <div class="weapons">
+            <button class="choice-btn">👊</button>
+            <button class="choice-btn">✋</button>
+            <button class="choice-btn">✌️</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>Copyright © 2023 kenane03</p>
+    </footer>
     
 </body>
 </html>

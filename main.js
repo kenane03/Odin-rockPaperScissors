@@ -1,80 +1,83 @@
 function main() {
+    const playerText = document.querySelector("#player-choice");
+    const computerText = document.querySelector("#computer-choice");
+    const resultText = document.querySelector("#result");
+    const playerScoreText = document.querySelector(".player-score");
+    const computerScoreText = document.querySelector(".computer-score");
+    const choiceBtns = document.querySelectorAll(".choice-btn");
+    let playerChoice;
     let computerChoice;
-    let userChoice;
-    let roundWinner = '';
-    
+    let playerScore = 0;
+    let computerScore = 0;
+
+
+    choiceBtns.forEach(button => button.addEventListener("click", () => {
+        playerChoice = button.textContent;
+        playerText.textContent = `${playerChoice}`;
+
+        getComputerChoice();
+    }));
+
     function getComputerChoice() {
-        let num = Math.floor(Math.random() * 3);
-        console.log(num);
-        
-        switch (num) {
+        let randNum = Math.floor(Math.random() * 3);
+
+        switch (randNum) {
             case 0:
-                computerChoice = "ROCK";
+                computerChoice = "👊";
                 break;
             case 1:
-                computerChoice = "PAPER";
+                computerChoice = "✋";
                 break;
             case 2:
-                computerChoice = "SCISSORS";
+                computerChoice = "✌️";
                 break;
         }
 
-        return computerChoice;
+        computerText.textContent = `${computerChoice}`;
+        checkWinner();
     };
 
-    function getUserChoice() {
-        userChoice = prompt("Are you playing Rock, Paper or Scissors ?");
-
-        userChoice = userChoice.toUpperCase();  
-
-        return userChoice;
-    }
-
-    function playRound (userChoice, computerChoice) {
-        if (userChoice === computerChoice) {
-            roundWinner = "Tie"
+    function checkWinner() {
+        if (playerChoice === computerChoice) {
+            resultText.textContent = "It's a draw"; 
         }
-        else if (
-            (userChoice === "ROCK" && computerChoice === "SCISSORS" || 
-            userChoice === "PAPER" && computerChoice === "ROCK" || 
-            userChoice === "SCISSORS" && computerChoice === "PAPER")
-        ) {
-            roundWinner = "Player";
-            
+        else if (playerChoice === "👊") {
+            if (computerChoice === "✋") {
+                resultText.textContent = "You lose!";
+                computerScore++;
+            }
+            else {
+                resultText.textContent = "You won!";
+                playerScore++;
+            }
         }
-        else if (
-            (computerChoice === "ROCK" && userChoice === "SCISSORS" ||
-            computerChoice === "PAPER" && userChoice === "ROCK" ||
-            computerChoice === "SCISSORS" && userChoice === "PAPER")
-        ) {
-            roundWinner = "Computer";
-        } 
+        else if (playerChoice === "✋") {
+            if (computerChoice === "✌️") {
+                resultText.textContent = "You lose!";
+                computerScore++;
+            }
+            else {
+                resultText.textContent = "You won!";
+                playerScore++;
+            }
+        }
+        else if (playerChoice === "✌️") {
+            if (computerChoice === "👊") {
+                resultText.textContent = "You lose!";
+                computerScore++;
+            }
+            else {
+                resultText.textContent = "You won!";
+                playerScore++;
+            }
+        }
+        updateScore();
+    };
 
-        console.log(roundWinner);
-    }
-
-    function displayWinner (roundWinner) {
-        if (roundWinner === "Player") {
-            console.log("Congrats! You won!");
-        }
-        else if (roundWinner === "Computer") {
-            console.log("You lost");
-        }
-        else {
-            console.log("It's a tie game");
-        }
-    }
-
-    getComputerChoice();
-    console.log(computerChoice)
-    getUserChoice();
-    console.log(userChoice);
-    playRound(userChoice, computerChoice);
-    displayWinner(roundWinner);
+    function updateScore() {
+        playerScoreText.textContent = `${playerScore}`;
+        computerScoreText.textContent = `${computerScore}`;
+    };
 };
 
-main();
-main();
-main();
-main();
 main();
